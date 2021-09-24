@@ -42,10 +42,13 @@ export default function AddCard() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    createCard(deckId, formData).then(deck => history.push(`/decks/${deck.id}`));
+    await createCard(deckId, formData)
+    history.push(`/decks/${deckId}`);
   };
+
+  const handleCancel = () => history.push(`/decks/${deckId}`);
 
   return (
     <div>
@@ -72,10 +75,10 @@ export default function AddCard() {
         formData={formData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
         deckId={deckId}
       />
       
     </div>
   );
-
-}
+};

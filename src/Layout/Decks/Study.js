@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { readDeck } from "../../utils/api";
 
 export default function Study() {
@@ -7,7 +7,6 @@ export default function Study() {
   const [deck, setDeck] = useState({ name: "Loading...", cards: [] });
   const [flipped, setflipped] = useState(false);
   const [index, setIndex] = useState(0);
-  const [error, setError] = useState(undefined);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -16,34 +15,35 @@ export default function Study() {
         let data = await readDeck(deckId, abortController.signal);
         setDeck(data);
       } catch (error) {
-        setError(error);
+        throw error;
       }
     }
     getDeck();
     return () => abortController.abort();
   }, [deckId]);
 
-  if (error) {
-    return error;
-  }
-
+  const history = useHistory();
+  
   function NextCard() {
+
     if (index === deck.cards.length - 1) {
       const result = window.confirm(
         "Restart cards? Click 'cancel' to return to the home page."
       );
       if (result) {
-        setIndex(0);
+        return setIndex(0);
+      } else if (!result) {
+        return history.push('/')
       }
-    } else {
+    };
       setIndex(index + 1);
-      setflipped(prevState => !prevState); //does this else statement need to be a history push to the homepage instead?
-    }
+      setflipped(prevState => !prevState);
   }
 
   function Flip() {
     setflipped(prevState => !prevState);
   }
+
 
   if (deck.cards.length <= 2) {
     return (
@@ -124,12 +124,12 @@ export default function Study() {
                     Next
                   </button>
               </div>
-              )}
+              )};
             </div>
           </div>
         </div>
       </div>
     </div>
     );
-  }
-}
+  };
+};

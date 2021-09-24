@@ -10,7 +10,7 @@ import Deck from "./Decks/Deck";
 import EditDeck from "./Decks/EditDeck";
 import EditCard from "./Decks/EditCard";
 
-function Layout() {
+export default function Layout() {
   return (
     <>
       <Header />
@@ -44,6 +44,4 @@ function Layout() {
       </div>
     </>
   );
-}
-
-export default Layout;
+};

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { listDecks, deleteDeck } from "../utils/api";
 
 export default function Home() {
   
   const [decks, setDecks] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -19,7 +20,7 @@ export default function Home() {
   const deleteHandler = async deckId => {
     if (window.confirm("Delete this deck? You will not be able to recover it.")) {
       await deleteDeck(deckId);
-      window.location.reload();
+      history.push('/');
     }
   };
 

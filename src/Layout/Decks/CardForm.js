@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CardForm({ formData, handleChange, handleSubmit, isNew }) {
+export default function CardForm({ formData, handleChange, handleSubmit, handleCancel, isNew }) {
 
   return (
     <form onSubmit={handleSubmit}>
@@ -28,10 +28,10 @@ export default function CardForm({ formData, handleChange, handleSubmit, isNew }
         </div>
 
       <div>
-        <button type="button" className="btn btn-secondary mr-3">{isNew ? "Done" : "Cancel"}</button>
+        <button type="button" className="btn btn-secondary mr-3" onClick={handleCancel}>{isNew ? "Done" : "Cancel"}</button>
         <button type="submit" className="btn btn-primary">{isNew ? "Save" : "Submit"}</button>
       </div>
 
     </form>
   );
-}
+};

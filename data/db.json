@@ -14,7 +14,7 @@
   "cards": [
     {
       "id": 1,
-      "front": "Differentiate between Real DOM and Virtual DOM!",
+      "front": "Differentiate between Real DOM and Virtual DOM.",
       "back": "Virtual DOM updates are faster but do not directly update the HTML",
       "deckId": 1
     },
@@ -32,7 +32,7 @@
     },
     {
       "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
-      "back": "All paths. A route with no path matches all URLs.",
+      "back": "All paths. A route with no path matches all URL's",
       "deckId": 2,
       "id": 4
     },
@@ -48,18 +48,6 @@
       "back": "b",
       "deckId": 1,
       "id": 7
-    },
-    {
-      "front": "What does React use instead of anchor tags?",
-      "back": "Links",
-      "deckId": 2,
-      "id": 8
-    },
-    {
-      "front": "Bob",
-      "back": "George",
-      "deckId": 2,
-      "id": 9
     }
   ]
 }

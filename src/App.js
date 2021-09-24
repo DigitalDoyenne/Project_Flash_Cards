@@ -6,7 +6,7 @@ import Layout from "./Layout";
  * App is a wrapper for <Layout>, you should not need to change this file.
  */
 
-function App() {
+export default function App() {
   return (
     <div className="app-routes">
       <Switch>
@@ -16,6 +16,4 @@ function App() {
       </Switch>
     </div>
   );
-}
-
-export default App;
+};

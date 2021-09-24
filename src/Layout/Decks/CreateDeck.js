@@ -21,10 +21,14 @@ export default function NewDeck() {
 
   const history = useHistory();
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    createDeck(formData).then(deck => history.push(`/decks/${deck.id}`));
+    const deck = await createDeck(formData)
+    console.log("This is a new deck", deck)
+    history.push(`/decks/${deck.id}`);
   };
+
+  const handleCancel = () => history.push('/');
 
   return (
     <div>
@@ -48,6 +52,7 @@ export default function NewDeck() {
         formData={formData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
         deckId={deckId}
       />
 

@@ -10,14 +10,19 @@ export default function Deck() {
 
   useEffect(() => {
     async function getDeck() {
-      const response = await readDeck(deckId);
+      const { signal } = new AbortController();
+      try {
+      const response = await readDeck(deckId, signal);
       if (response) setDeck(response);
+      } catch (error) {
+        history.push("/NotFound")
+      }
     }
     getDeck();
-  }, [deckId]);
+  }, [history, deckId]);
 
   const deleteDeckHandler = async deckId => {
-    if (window.confirm("Delete this card? You will not be able to recover it.")) {
+    if (window.confirm("Delete this deck? You will not be able to recover it.")) {
       await deleteDeck(deckId);
       history.push("/");
     }
@@ -26,7 +31,7 @@ export default function Deck() {
   const deleteCardHandler = async cardId => {
     if (window.confirm("Delete this card? You will not be able to recover it.")) {
       await deleteCard(cardId);
-      window.location.reload();
+      history.push(`/decks/${deckId}`);
     }
   };
 
@@ -151,4 +156,4 @@ export default function Deck() {
       </div>
     </div>
   );
-}
+};
