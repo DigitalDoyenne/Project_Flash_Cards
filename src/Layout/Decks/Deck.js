@@ -31,7 +31,7 @@ export default function Deck() {
   const deleteCardHandler = async cardId => {
     if (window.confirm("Delete this card? You will not be able to recover it.")) {
       await deleteCard(cardId);
-      history.push(`/decks/${deckId}`);
+      history.go(0);
     }
   };
 

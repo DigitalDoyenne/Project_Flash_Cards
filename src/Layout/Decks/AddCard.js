@@ -4,12 +4,12 @@ import { createCard, readDeck } from "../../utils/api";
 import CardForm from "./CardForm"
 
 export default function AddCard() {
-  const initialState = {
+  const initialFormData = {
     front: "",
     back: "",
   };
 
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState(initialFormData);
   const { deckId } = useParams();
   const [deck, setDeck] = useState([]);
   const history = useHistory();
@@ -45,7 +45,7 @@ export default function AddCard() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createCard(deckId, formData)
-    history.push(`/decks/${deckId}`);
+    setFormData(initialFormData);
   };
 
   const handleCancel = () => history.push(`/decks/${deckId}`);
@@ -59,7 +59,7 @@ export default function AddCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}/cards/new`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Add Card

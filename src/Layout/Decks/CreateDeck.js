@@ -24,7 +24,6 @@ export default function NewDeck() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const deck = await createDeck(formData)
-    console.log("This is a new deck", deck)
     history.push(`/decks/${deck.id}`);
   };
 
